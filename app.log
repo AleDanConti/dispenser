@@ -1,0 +1,142 @@
+2026-06-27 00:21:09,376 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 00:21:09,377 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 00:21:09,957 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 00:21:09,958 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 00:21:09,958 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 00:21:10,319 CRITICAL main: Excepcion no capturada:
+Traceback (most recent call last):
+  File "/home/admin/dispenser/main.py", line 104, in <module>
+    main()
+    ~~~~^^
+  File "/home/admin/dispenser/main.py", line 88, in main
+    app = DispenserApp(
+        payments=pagos,
+        hardware=hardware,
+        sensors=sensores,
+    )
+  File "/home/admin/dispenser/ui/app.py", line 8, in __init__
+    super().__init__()
+    ~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/tkinter/__init__.py", line 2462, in __init__
+    self.tk = _tkinter.create(screenName, baseName, className, interactive, wantobjects, useTk, sync, use)
+              ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: no display name and no $DISPLAY environment variable
+
+2026-06-27 00:21:10,320 INFO main: Cerrando aplicacion...
+2026-06-27 00:21:10,320 INFO hardware.mock_hardware: [MOCK] Hardware cleanup
+2026-06-27 00:22:22,148 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 00:22:22,149 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 00:22:22,332 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 00:22:22,333 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 00:22:22,334 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 00:22:22,417 CRITICAL main: Excepcion no capturada:
+Traceback (most recent call last):
+  File "/home/admin/dispenser/main.py", line 104, in <module>
+    main()
+    ~~~~^^
+  File "/home/admin/dispenser/main.py", line 88, in main
+    app = DispenserApp(
+        payments=pagos,
+        hardware=hardware,
+        sensors=sensores,
+    )
+  File "/home/admin/dispenser/ui/app.py", line 8, in __init__
+    super().__init__()
+    ~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/tkinter/__init__.py", line 2462, in __init__
+    self.tk = _tkinter.create(screenName, baseName, className, interactive, wantobjects, useTk, sync, use)
+              ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_tkinter.TclError: no display name and no $DISPLAY environment variable
+
+2026-06-27 00:22:22,418 INFO main: Cerrando aplicacion...
+2026-06-27 00:22:22,419 INFO hardware.mock_hardware: [MOCK] Hardware cleanup
+2026-06-27 01:11:45,059 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 01:11:45,061 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 01:11:45,676 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 01:11:45,677 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 01:11:45,677 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 01:11:47,049 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-27 01:11:55,246 INFO payments.mock_provider: [MOCK] Orden creada: MOCK-0001 por $1500
+2026-06-27 01:12:05,248 INFO payments.mock_provider: [MOCK] Orden MOCK-0001 auto-aprobada
+2026-06-27 01:11:49,516 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 01:11:49,518 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 01:11:50,133 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 01:11:50,134 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 01:11:50,134 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 01:11:51,458 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-27 01:11:57,235 INFO payments.mock_provider: [MOCK] Orden creada: MOCK-0001 por $3200
+2026-06-27 01:16:03,451 INFO payments.mock_provider: [MOCK] Orden creada: MOCK-0002 por $1800
+2026-06-27 01:16:04,025 INFO payments.mock_provider: [MOCK] Orden MOCK-0001 auto-aprobada
+2026-06-27 01:16:13,453 INFO payments.mock_provider: [MOCK] Orden MOCK-0002 auto-aprobada
+2026-06-27 01:17:49,231 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 01:17:49,233 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 01:17:49,846 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 01:17:49,847 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 01:17:49,847 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 01:17:51,033 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-27 01:18:37,108 INFO payments.mock_provider: [MOCK] Orden creada: MOCK-0001 por $750
+2026-06-27 01:18:47,109 INFO payments.mock_provider: [MOCK] Orden MOCK-0001 auto-aprobada
+2026-06-27 01:18:49,204 INFO hardware.mock_hardware: [MOCK] 800cc de jabon_verde (real=172.0s, mock=2s)
+2026-06-27 01:18:49,205 INFO hardware.mock_hardware: [MOCK] Bomba jabon_verde ON
+2026-06-27 01:18:51,208 INFO hardware.mock_hardware: [MOCK] Bomba jabon_verde OFF
+2026-06-27 01:18:51,209 INFO hardware.mock_hardware: [MOCK] Dispensado de jabon_verde finalizado
+2026-06-27 01:18:59,839 INFO payments.mock_provider: [MOCK] Orden creada: MOCK-0002 por $1800
+2026-06-27 01:19:09,841 INFO payments.mock_provider: [MOCK] Orden MOCK-0002 auto-aprobada
+2026-06-27 01:19:11,923 INFO hardware.mock_hardware: [MOCK] 2000cc de suavizante (real=487.8s, mock=2s)
+2026-06-27 01:19:11,924 INFO hardware.mock_hardware: [MOCK] Bomba suavizante ON
+2026-06-27 01:19:13,926 INFO hardware.mock_hardware: [MOCK] Bomba suavizante OFF
+2026-06-27 01:19:13,927 INFO hardware.mock_hardware: [MOCK] Dispensado de suavizante finalizado
+2026-06-27 01:46:59,216 INFO payments.mock_provider: [MOCK] Orden creada: MOCK-0003 por $1400
+2026-06-27 01:47:09,219 INFO payments.mock_provider: [MOCK] Orden MOCK-0003 auto-aprobada
+2026-06-27 01:47:11,278 INFO hardware.mock_hardware: [MOCK] 2000cc de jabon_azul (real=425.5s, mock=2s)
+2026-06-27 01:47:11,279 INFO hardware.mock_hardware: [MOCK] Bomba jabon_azul ON
+2026-06-27 01:47:13,280 INFO hardware.mock_hardware: [MOCK] Bomba jabon_azul OFF
+2026-06-27 01:47:13,281 INFO hardware.mock_hardware: [MOCK] Dispensado de jabon_azul finalizado
+2026-06-27 01:48:09,553 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 01:48:09,554 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 01:48:10,170 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 01:48:10,171 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 01:48:10,171 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 01:48:11,370 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-27 09:02:16,502 INFO payments.mock_provider: [MOCK] Orden creada: MOCK-0001 por $1500
+2026-06-27 09:02:26,504 INFO payments.mock_provider: [MOCK] Orden MOCK-0001 auto-aprobada
+2026-06-27 09:02:28,599 INFO hardware.mock_hardware: [MOCK] 2000cc de jabon_verde (real=430.1s, mock=2s)
+2026-06-27 09:02:28,600 INFO hardware.mock_hardware: [MOCK] Bomba jabon_verde ON
+2026-06-27 09:02:30,602 INFO hardware.mock_hardware: [MOCK] Bomba jabon_verde OFF
+2026-06-27 09:02:30,603 INFO hardware.mock_hardware: [MOCK] Dispensado de jabon_verde finalizado
+2026-06-27 09:27:31,613 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 09:27:31,616 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 09:27:32,271 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 09:27:32,272 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 09:27:32,272 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 09:27:33,505 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-27 11:21:42,820 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 11:21:42,821 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 11:21:43,442 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 11:21:43,442 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 11:21:43,443 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 11:21:44,701 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-27 11:22:49,142 INFO payments.mock_provider: [MOCK] Orden creada: MOCK-0001 por $1400
+2026-06-27 11:22:59,144 INFO payments.mock_provider: [MOCK] Orden MOCK-0001 auto-aprobada
+2026-06-27 11:23:01,242 INFO hardware.mock_hardware: [MOCK] 2000cc de jabon_azul (real=425.5s, mock=2s)
+2026-06-27 11:23:01,243 INFO hardware.mock_hardware: [MOCK] Bomba jabon_azul ON
+2026-06-27 11:23:03,244 INFO hardware.mock_hardware: [MOCK] Bomba jabon_azul OFF
+2026-06-27 11:23:03,245 INFO hardware.mock_hardware: [MOCK] Dispensado de jabon_azul finalizado
+2026-06-27 11:23:58,687 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 11:23:58,689 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 11:23:59,306 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 11:23:59,306 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 11:23:59,307 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 11:54:26,837 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-27 12:51:10,523 INFO payments.mock_provider: [MOCK] Orden creada: MOCK-0001 por $600
+2026-06-27 12:51:20,527 INFO payments.mock_provider: [MOCK] Orden MOCK-0001 auto-aprobada
+2026-06-27 12:51:22,626 INFO hardware.mock_hardware: [MOCK] 800cc de limpiador (real=64.0s, mock=2s)
+2026-06-27 12:51:22,627 INFO hardware.mock_hardware: [MOCK] Bomba limpiador ON
+2026-06-27 12:51:24,629 INFO hardware.mock_hardware: [MOCK] Bomba limpiador OFF
+2026-06-27 12:51:24,630 INFO hardware.mock_hardware: [MOCK] Dispensado de limpiador finalizado
+2026-06-27 14:40:09,267 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 14:40:09,269 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 14:40:09,924 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 14:40:09,925 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 14:40:09,925 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 14:40:11,169 INFO main: === Sistema listo — entrando a mainloop ===
