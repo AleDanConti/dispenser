@@ -492,3 +492,15 @@ TabError: inconsistent use of tabs and spaces in indentation
 2026-06-28 02:43:46,170 INFO sensors.mock_sensors: MockSensors inicializado
 2026-06-28 02:43:46,171 INFO payments.mock_provider: MockPaymentProvider inicializado
 2026-06-28 02:43:47,715 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-28 02:51:59,358 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-28 02:51:59,361 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-28 02:51:59,969 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-28 02:51:59,970 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-28 02:51:59,970 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-28 02:52:01,574 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-28 02:57:20,486 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-28 02:57:20,488 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-28 02:57:21,098 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-28 02:57:21,099 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-28 02:57:21,099 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-28 02:57:22,613 INFO main: === Sistema listo — entrando a mainloop ===

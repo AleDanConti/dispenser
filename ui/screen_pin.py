@@ -6,26 +6,19 @@ from ui.theme import COLORS, FONTS
 class ScreenPin(BaseScreen):
     def __init__(self, parent, controller):
         super().__init__(parent, controller)
-
         tk.Label(self, text="Acceso propietario",
             font=FONTS["subtitle"], bg=COLORS["bg"], fg=COLORS["text"]
-        ).pack(pady=(60, 20))
-
+        ).pack(pady=(10, 5))
         self._pin = ""
-
         self.lbl_pin = tk.Label(self, text="  ",
             font=FONTS["title"], bg=COLORS["bg"], fg=COLORS["primary"])
-        self.lbl_pin.pack(pady=10)
-
+        self.lbl_pin.pack(pady=4)
         self.lbl_error = tk.Label(self, text="",
             font=FONTS["small"], bg=COLORS["bg"], fg=COLORS["error"])
-        self.lbl_error.pack(pady=5)
-
+        self.lbl_error.pack(pady=2)
         teclado = tk.Frame(self, bg=COLORS["bg"])
-        teclado.pack(pady=10)
-
+        teclado.pack(pady=4)
         teclas = ["1","2","3","4","5","6","7","8","9","←","0","✓"]
-
         for idx, tecla in enumerate(teclas):
             row, col = divmod(idx, 3)
             if tecla == "←":
@@ -40,16 +33,14 @@ class ScreenPin(BaseScreen):
                 cmd = lambda t=tecla: self._agregar(t)
                 color = COLORS["card"]
                 fg = COLORS["text"]
-
             tk.Button(teclado, text=tecla, font=FONTS["button"],
                 bg=color, fg=fg, activebackground=color,
                 relief="flat", width=4, height=2, command=cmd,
             ).grid(row=row, column=col, padx=8, pady=8)
-
         tk.Button(self, text="← Cancelar", font=FONTS["small"],
             bg=COLORS["border"], fg=COLORS["text"], relief="flat",
             command=lambda: controller.show_frame("ScreenProducto"),
-        ).pack(pady=15)
+        ).pack(pady=10)
 
     def on_show(self, **kwargs):
         self._pin = ""
