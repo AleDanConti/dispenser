@@ -140,3 +140,89 @@ _tkinter.TclError: no display name and no $DISPLAY environment variable
 2026-06-27 14:40:09,925 INFO sensors.mock_sensors: MockSensors inicializado
 2026-06-27 14:40:09,925 INFO payments.mock_provider: MockPaymentProvider inicializado
 2026-06-27 14:40:11,169 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-27 16:52:35,937 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 16:52:35,939 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 16:52:36,563 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 16:52:36,564 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 16:52:36,564 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 16:52:37,977 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-27 17:06:06,801 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 17:06:06,802 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 17:06:07,275 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 17:06:07,275 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 17:06:07,276 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 17:06:08,433 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-27 17:08:16,851 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 17:08:16,853 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 17:08:18,032 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 17:08:18,033 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 17:08:18,034 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 17:08:19,538 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-27 17:25:51,520 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 17:25:51,522 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 17:25:52,136 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 17:25:52,137 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 17:25:52,137 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 17:25:53,546 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-27 17:39:20,237 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 17:39:20,238 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 17:39:20,913 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 17:39:20,914 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 17:39:20,915 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 17:39:22,222 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-27 18:58:19,833 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 18:58:19,835 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 18:58:20,487 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 18:58:20,488 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 18:58:20,488 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 18:58:22,333 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-27 19:06:24,792 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 19:06:24,794 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 19:06:25,409 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 19:06:25,410 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 19:06:25,410 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 19:06:26,703 CRITICAL main: Excepcion no capturada:
+Traceback (most recent call last):
+  File "/home/admin/dispenser/main.py", line 104, in <module>
+    main()
+    ~~~~^^
+  File "/home/admin/dispenser/main.py", line 88, in main
+    app = DispenserApp(
+        payments=pagos,
+        hardware=hardware,
+        sensors=sensores,
+    )
+  File "/home/admin/dispenser/ui/app.py", line 34, in __init__
+    self._cargar_pantallas(contenedor)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/home/admin/dispenser/ui/app.py", line 50, in _cargar_pantallas
+    frame = PantallaCls(contenedor, self)
+  File "/home/admin/dispenser/ui/screen_producto.py", line 58, in __init__
+    card = self._make_card(grid, idx)
+  File "/home/admin/dispenser/ui/screen_producto.py", line 107, in _make_card
+    font=FONT_PRICE, bg=CARD_BG, fg=TEXT_white,
+                                    ^^^^^^^^^^
+NameError: name 'TEXT_white' is not defined. Did you mean: 'TEXT_WHITE'?
+
+2026-06-27 19:06:26,704 INFO main: Cerrando aplicacion...
+2026-06-27 19:06:26,705 INFO hardware.mock_hardware: [MOCK] Hardware cleanup
+2026-06-27 19:12:07,124 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 19:12:07,125 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 19:12:07,747 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 19:12:07,748 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 19:12:07,749 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 19:12:09,543 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-27 19:13:46,275 INFO payments.mock_provider: [MOCK] Orden creada: MOCK-0001 por $1400
+2026-06-27 19:13:56,277 INFO payments.mock_provider: [MOCK] Orden MOCK-0001 auto-aprobada
+2026-06-27 19:23:58,332 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 19:23:58,334 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 19:23:58,966 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 19:23:58,967 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 19:23:58,968 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 19:24:00,778 INFO main: === Sistema listo — entrando a mainloop ===
+2026-06-27 21:10:57,489 INFO main: === Iniciando Sistema Dispenser DISP-CENTRO-01 v1.0.0 ===
+2026-06-27 21:10:57,491 WARNING main: SIMULATION_MODE activo — usando mocks
+2026-06-27 21:10:58,117 INFO hardware.mock_hardware: MockHardware inicializado
+2026-06-27 21:10:58,117 INFO sensors.mock_sensors: MockSensors inicializado
+2026-06-27 21:10:58,118 INFO payments.mock_provider: MockPaymentProvider inicializado
+2026-06-27 21:10:59,857 INFO main: === Sistema listo — entrando a mainloop ===
