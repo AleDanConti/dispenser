@@ -63,5 +63,18 @@ class ScreenEstado(BaseScreen):
         if self.controller.hardware:
             self.controller.hardware.dispensar(producto_id, volumen_cc)
             self.controller.hardware.set_led("pago", False)
+
+        # Notificación de prueba — confirma que el canal de WhatsApp funciona
+        try:
+            from core.notificaciones import notificar_compra
+            prod = self.controller.state.get("producto", {})
+            precio = self.controller.state.get("precio", 0)
+            notificar_compra(
+                prod.get("nombre", producto_id), volumen_cc, precio)
+        except Exception as e:
+            import logging
+            logging.getLogger(__name__).error(
+                f"No se pudo notificar la compra: {e}")
+
         if self.controller.state.get("orden_id") == orden_id:
             self.after(0, self._volver)

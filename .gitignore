@@ -1,0 +1,20 @@
+# Entorno y credenciales
+.env
+venv/
+
+# Configuración editable en producción (no versionar)
+core/settings.json
+
+# Logs
+*.log
+app.log*
+
+# Python
+__pycache__/
+*.pyc
+
+# Backups locales
+*.bak
+
+# Temporales (QR generados)
+tmp/

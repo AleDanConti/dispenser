@@ -232,20 +232,27 @@ class ScreenConfig(BaseScreen):
         self.precio_vars = {}
         volumenes = ["500", "800", "2000", "5000"]
         etiquetas = ["500cc", "800cc", "2L", "5L"]
+
+        # Header: misma estructura que las filas de datos
+        # (placeholder color + nombre + N columnas de precio)
         header = tk.Frame(frame, bg=COLORS["bg"])
         header.pack(fill="x", pady=(5, 2))
+        tk.Label(header, text="  ", bg=COLORS["bg"],
+            width=2).pack(side="left", padx=(0, 4))
         tk.Label(header, text="Producto", font=FONTS["small"],
-            bg=COLORS["bg"], width=14, anchor="w").pack(side="left")
+            bg=COLORS["bg"], width=16, anchor="w").pack(side="left")
         for etq in etiquetas:
             tk.Label(header, text=etq, font=FONTS["small"],
-                bg=COLORS["bg"], width=9, anchor="center").pack(side="left")
+                bg=COLORS["bg"], width=6, anchor="e",
+                padx=3).pack(side="left", padx=2)
+
         for prod in PRODUCTOS_DEFAULT:
             fila = tk.Frame(frame, bg=COLORS["bg"])
             fila.pack(fill="x", pady=4)
             tk.Label(fila, text="  ", bg=prod["color"],
                 width=2).pack(side="left", padx=(0, 4))
             tk.Label(fila, text=prod["nombre"], font=FONTS["small"],
-                width=12, anchor="w", bg=COLORS["bg"]).pack(side="left")
+                width=16, anchor="w", bg=COLORS["bg"]).pack(side="left")
             self.precio_vars[prod["id"]] = {}
             for vol in volumenes:
                 var = tk.StringVar()
