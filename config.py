@@ -43,31 +43,23 @@ MP_ACCESS_TOKEN = (
 TIEMPO_ESPERA_PAGO_MP = 300   # segundos que queda activo el monto en la caja
 
 GPIO_BOMBA = {
-    "jabon_verde": 22,
-    "jabon_azul":  23,
-    "suavizante":  24,
-    "limpiador":   27,
+    "jabon_azul":  22,
+    "suavizante":  23,
+    "limpiador":   24,
+    "jabon_verde": 27,
 }
+
 
 GPIO_LED_QR      = 17
 GPIO_LED_BOOT    = 18
 GPIO_LED_PAGO    = 25
 GPIO_BTN_REBOOT  = 4
 
-PWM_FRECUENCIA_HZ = 100
-
-PWM_DUTY_CYCLE = {
-    "jabon_verde": 70,
-    "jabon_azul":  70,
-    "suavizante":  65,
-    "limpiador":   25,
-}
-
 CAUDAL_CC_SEG = {
-    "jabon_verde": 4.65,
-    "jabon_azul":  4.70,
-    "suavizante":  4.10,
-    "limpiador":   12.50,
+    "jabon_verde": 6.67,
+    "jabon_azul":  6.67,
+    "suavizante":  6.67,
+    "limpiador":   58.33,
 }
 
 GPIO_SENSOR = {

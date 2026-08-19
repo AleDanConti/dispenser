@@ -1,5 +1,6 @@
 # hardware/mock_hardware.py
 import time
+import threading
 import logging
 log = logging.getLogger(__name__)
 
@@ -30,16 +31,37 @@ class MockHardware:
         return volumen_cc / caudal
 
     def dispensar(self, producto_id, volumen_cc):
+        return self.dispensar_controlable(
+            producto_id, volumen_cc, threading.Event(), threading.Event())
+
+    def dispensar_controlable(self, producto_id, volumen_cc,
+                                evento_pausa, evento_cancelar, on_progreso=None):
         try:
-            t_real = self.calcular_tiempo_dispensado(producto_id, volumen_cc)
+            t_total = self.calcular_tiempo_dispensado(producto_id, volumen_cc)
         except ValueError as e:
             log.error(f"dispensar: {e}")
             return False
-        log.info(f"[MOCK] {volumen_cc}cc de {producto_id} (real={t_real:.1f}s, mock={self.MOCK_DISPENSE_SEG}s)")
+
+        t_total_mock = min(t_total, self.MOCK_DISPENSE_SEG)
+        log.info(f"[MOCK] {volumen_cc}cc de {producto_id} (real={t_total:.1f}s, mock={t_total_mock:.1f}s)")
+
         if not self.encender_bomba(producto_id):
             return False
+
+        transcurrido = 0.0
+        paso = 0.1
         try:
-            time.sleep(self.MOCK_DISPENSE_SEG)
+            while transcurrido < t_total_mock:
+                if evento_cancelar.is_set():
+                    log.info(f"[MOCK] Dispensado de {producto_id} CANCELADO")
+                    return False
+                if evento_pausa.is_set():
+                    time.sleep(paso)
+                    continue
+                time.sleep(paso)
+                transcurrido += paso
+                if on_progreso:
+                    on_progreso(min(transcurrido / t_total_mock, 1.0))
         finally:
             self.apagar_bomba(producto_id)
             log.info(f"[MOCK] Dispensado de {producto_id} finalizado")
