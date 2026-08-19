@@ -154,7 +154,7 @@ class ScreenProducto(BaseScreen):
             canvas.itemconfig("content", width=w, height=h)
         canvas.bind("<Configure>", resize_content, add="+")
 
-        left = tk.Frame(content, bg=CARD_BG, width=150)
+        left = tk.Frame(content, bg=CARD_BG, width=175)
         left.pack(side="left", fill="y", padx=(10, 0), pady=8)
         left.pack_propagate(False)
 
@@ -165,7 +165,7 @@ class ScreenProducto(BaseScreen):
         lbl_icon.pack(expand=True)
         icon_path = os.path.join(ICON_DIR, prod["icon"])
         try:
-            pil_img = Image.open(icon_path).resize((130, 130), Image.LANCZOS)
+            pil_img = Image.open(icon_path).resize((160, 160), Image.LANCZOS)
             tk_img  = ImageTk.PhotoImage(pil_img)
             lbl_icon.configure(image=tk_img)
             self._icon_refs.append(tk_img)

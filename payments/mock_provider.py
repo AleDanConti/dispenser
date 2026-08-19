@@ -47,3 +47,9 @@ class MockPaymentProvider:
         estado = self._estados.get(orden_id, "pending")
         log.debug(f"[MOCK] Estado {orden_id}: {estado}")
         return estado
+
+    def cancelar_orden(self, orden_id=None):
+        """En modo simulado no hay nada que liberar del lado del
+        proveedor, pero se define para cumplir la misma interfaz
+        que MercadoPagoPaymentProvider."""
+        pass

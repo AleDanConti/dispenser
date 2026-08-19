@@ -26,8 +26,21 @@ PRECIOS = {
 
 TIEMPO_ESPERA_PAGO = 300
 
-MOBBEX_API_KEY      = os.environ.get("MOBBEX_API_KEY_TEST", "")
-MOBBEX_ACCESS_TOKEN = os.environ.get("MOBBEX_ACCESS_TOKEN_TEST", "")
+MP_SANDBOX  = True   # False cuando pases a credenciales de produccion
+
+MP_USER_ID = (
+    os.environ.get("MP_USER_ID_TEST", "")
+    if MP_SANDBOX
+    else os.environ.get("MP_USER_ID_PROD", "")
+)
+
+MP_ACCESS_TOKEN = (
+    os.environ.get("MP_ACCESS_TOKEN_TEST", "")
+    if MP_SANDBOX
+    else os.environ.get("MP_ACCESS_TOKEN_PROD", "")
+)
+
+TIEMPO_ESPERA_PAGO_MP = 300   # segundos que queda activo el monto en la caja
 
 GPIO_BOMBA = {
     "jabon_verde": 22,

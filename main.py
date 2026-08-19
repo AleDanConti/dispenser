@@ -66,7 +66,7 @@ def main():
         from hardware.mock_hardware import MockHardware as HW
         from sensors.mock_sensors   import MockSensors as SS
     else:
-        from payments.mobbex_provider import MobbexPaymentProvider as PP
+        from payments.mercadopago_provider import MercadoPagoPaymentProvider as PP
         from hardware.gpio_hardware   import GpioHardware as HW
         from sensors.hc_sr04          import HcSr04Sensors as SS
 

@@ -58,6 +58,12 @@ class ScreenQR(BaseScreen):
 
     def _cancelar(self):
         self._detener()
+        orden_id = self.controller.state.get("orden_id")
+        if orden_id and self.controller.payments:
+            try:
+                self.controller.payments.cancelar_orden(orden_id)
+            except Exception:
+                pass
         if self.controller.hardware:
             self.controller.hardware.set_led("qr", False)
         self.controller.show_frame("ScreenProducto")
@@ -101,6 +107,12 @@ class ScreenQR(BaseScreen):
         self.lbl_estado.config(text=f"Esperando pago... {mins:02d}:{secs:02d}")
         if self._restante <= 0:
             self._detener()
+            orden_id = self.controller.state.get("orden_id")
+            if orden_id and self.controller.payments:
+                try:
+                    self.controller.payments.cancelar_orden(orden_id)
+                except Exception:
+                    pass
             if self.controller.hardware:
                 self.controller.hardware.set_led("qr", False)
             self.controller.show_frame("ScreenEstado", estado="timeout")

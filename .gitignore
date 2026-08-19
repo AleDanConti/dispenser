@@ -18,3 +18,5 @@ __pycache__/
 
 # Temporales (QR generados)
 tmp/
+assets/qr_mp.png
+assets/qr_mp.png
