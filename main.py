@@ -5,6 +5,7 @@ import os
 import atexit
 import signal
 import threading
+import time
 import traceback
 from logging.handlers import RotatingFileHandler
 
@@ -43,11 +44,14 @@ def excepthook_hilos(args):
 
 threading.excepthook = excepthook_hilos
 
+_hardware_global = {"hw": None}
 
-def cerrar(hardware):
+
+def cerrar(hardware=None):
     log.info("Cerrando aplicacion...")
-    if hardware:
-        hardware.cleanup()
+    hw = hardware or _hardware_global["hw"]
+    if hw:
+        hw.cleanup()
     sys.exit(0)
 
 
@@ -56,48 +60,84 @@ def manejar_alertas(alertas, niveles_actuales=None):
     enviar_alertas(alertas, niveles_actuales)
 
 
+def _log_splash(app, texto, tipo="info"):
+    log.info(texto)
+    app.after(0, lambda: app.splash.agregar_linea(texto, tipo))
+
+
+def _inicializar_en_hilo(app):
+    """Corre en un hilo aparte: arma hardware/sensores/pagos y va
+    empujando cada paso a la consola del splash en pantalla."""
+    try:
+        app.after(0, lambda: app.splash.set_estado("Iniciando sistema..."))
+        _log_splash(app, f"Equipo: {config.EQUIPO_ID}  v{config.APP_VERSION}")
+        time.sleep(0.3)
+
+        if config.SIMULATION_MODE:
+            _log_splash(app, "SIMULATION_MODE activo — usando mocks", "warn")
+            from payments.mock_provider import MockPaymentProvider as PP
+            from hardware.mock_hardware import MockHardware as HW
+            from sensors.mock_sensors   import MockSensors as SS
+        else:
+            from payments.mercadopago_provider import MercadoPagoPaymentProvider as PP
+            from hardware.gpio_hardware   import GpioHardware as HW
+            from sensors.hc_sr04          import HcSr04Sensors as SS
+
+        _log_splash(app, "Inicializando hardware (GPIO)...")
+        hardware = HW()
+        _hardware_global["hw"] = hardware
+        _log_splash(app, "Hardware OK", "ok")
+        time.sleep(0.2)
+
+        _log_splash(app, "Inicializando sensores...")
+        sensores = SS(
+            hardware=hardware,
+            on_alerta=lambda a, n: manejar_alertas(a, n))
+        if not config.SIMULATION_MODE:
+            sensores.iniciar_monitoreo(config.MONITOREO_INTERVALO_SEG)
+        _log_splash(app, "Sensores OK", "ok")
+        time.sleep(0.2)
+
+        _log_splash(app, "Conectando proveedor de pagos...")
+        pagos = PP()
+        _log_splash(app, "Pagos OK", "ok")
+        time.sleep(0.2)
+
+        atexit.register(lambda: cerrar(hardware))
+
+        _log_splash(app, "Sistema listo", "ok")
+        time.sleep(0.5)
+
+        app.after(0, lambda: app.iniciar_normal(pagos, hardware, sensores))
+
+    except Exception as e:
+        log.critical("Error fatal durante inicializacion", exc_info=True)
+        app.after(0, lambda: app.splash.agregar_linea(
+            f"ERROR FATAL: {e}", "error"))
+        app.after(0, lambda: app.splash.set_estado(
+            "Fallo el inicio — revisar app.log"))
+
+
 def main():
     log.info("=== Iniciando Sistema Dispenser %s v%s ===",
              config.EQUIPO_ID, config.APP_VERSION)
 
-    if config.SIMULATION_MODE:
-        log.warning("SIMULATION_MODE activo — usando mocks")
-        from payments.mock_provider import MockPaymentProvider as PP
-        from hardware.mock_hardware import MockHardware as HW
-        from sensors.mock_sensors   import MockSensors as SS
-    else:
-        from payments.mercadopago_provider import MercadoPagoPaymentProvider as PP
-        from hardware.gpio_hardware   import GpioHardware as HW
-        from sensors.hc_sr04          import HcSr04Sensors as SS
-
-    hardware = HW()
-
-    sensores = SS(
-        hardware=hardware,
-        on_alerta=lambda a, n: manejar_alertas(a, n))
-    if not config.SIMULATION_MODE:
-        sensores.iniciar_monitoreo(config.MONITOREO_INTERVALO_SEG)
-
-    pagos = PP()
-
-    atexit.register(lambda: cerrar(hardware))
-    signal.signal(signal.SIGTERM, lambda *_: cerrar(hardware))
-    signal.signal(signal.SIGINT,  lambda *_: cerrar(hardware))
+    signal.signal(signal.SIGTERM, lambda *_: cerrar())
+    signal.signal(signal.SIGINT,  lambda *_: cerrar())
 
     from ui.app import DispenserApp
-    app = DispenserApp(
-        payments=pagos,
-        hardware=hardware,
-        sensors=sensores,
-    )
+    app = DispenserApp()
 
-    log.info("=== Sistema listo — entrando a mainloop ===")
+    threading.Thread(target=_inicializar_en_hilo, args=(app,),
+                      daemon=True).start()
+
+    log.info("=== Splash en pantalla — entrando a mainloop ===")
     try:
         app.mainloop()
     except Exception:
         log.critical("Error fatal en mainloop", exc_info=True)
     finally:
-        cerrar(hardware)
+        cerrar()
 
 
 if __name__ == "__main__":

@@ -4,12 +4,12 @@ from ui.theme import COLORS, SCREEN_W, SCREEN_H
 
 
 class DispenserApp(tk.Tk):
-    def __init__(self, payments=None, hardware=None, sensors=None):
+    def __init__(self):
         super().__init__()
 
-        self.payments = payments
-        self.hardware = hardware
-        self.sensors  = sensors
+        self.payments = None
+        self.hardware = None
+        self.sensors  = None
 
         self.state = {
             "producto":  None,
@@ -32,9 +32,10 @@ class DispenserApp(tk.Tk):
 
         self._frames = {}
         self._cargar_pantallas(contenedor)
-        self.show_frame("ScreenProducto")
+        self.show_frame("ScreenSplash")
 
     def _cargar_pantallas(self, contenedor):
+        from ui.screen_splash   import ScreenSplash
         from ui.screen_producto import ScreenProducto
         from ui.screen_volumen  import ScreenVolumen
         from ui.screen_qr       import ScreenQR
@@ -43,13 +44,24 @@ class DispenserApp(tk.Tk):
         from ui.screen_config   import ScreenConfig
 
         for PantallaCls in (
-            ScreenProducto, ScreenVolumen, ScreenQR,
+            ScreenSplash, ScreenProducto, ScreenVolumen, ScreenQR,
             ScreenEstado, ScreenPin, ScreenConfig,
         ):
             nombre = PantallaCls.__name__
             frame = PantallaCls(contenedor, self)
             self._frames[nombre] = frame
             frame.grid(row=0, column=0, sticky="nsew")
+
+    @property
+    def splash(self):
+        return self._frames["ScreenSplash"]
+
+    def iniciar_normal(self, payments, hardware, sensors):
+        """Llamado una vez que el arranque (Etapa 5/6/pagos) termino."""
+        self.payments = payments
+        self.hardware = hardware
+        self.sensors  = sensors
+        self.show_frame("ScreenProducto")
 
     def show_frame(self, nombre, **kwargs):
         frame = self._frames[nombre]
