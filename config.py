@@ -63,14 +63,14 @@ CAUDAL_CC_SEG = {
 }
 
 GPIO_SENSOR = {
-    "jabon_verde": {"trig": 5,  "echo": 6},
-    "jabon_azul":  {"trig": 13, "echo": 19},
-    "suavizante":  {"trig": 26, "echo": 21},
-    "limpiador":   {"trig": 20, "echo": 16},
+    "jabon_verde": {"trig": 19, "echo": 21},
+    "jabon_azul":  {"trig": 13, "echo": 20},
+    "suavizante":  {"trig": 6,  "echo": 16},
+    "limpiador":   {"trig": 5,  "echo": 26},
 }
 
 NIVEL_CALIBRACION = {
-    "jabon_verde": {"vacio": 38.5, "lleno": 5.0},
+    "jabon_verde": {"vacio": 22.0, "lleno": 7.0},
     "jabon_azul":  {"vacio": 38.5, "lleno": 5.0},
     "suavizante":  {"vacio": 38.5, "lleno": 5.0},
     "limpiador":   {"vacio": 42.0, "lleno": 6.0},
