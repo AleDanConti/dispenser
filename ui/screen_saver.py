@@ -20,6 +20,12 @@ class ScreenSaver(BaseScreen):
         self._video_frame.pack(fill="both", expand=True)
         self._video_frame.bind("<Button-1>", self._salir)
 
+        self._lbl_toque = tk.Label(
+            self, text="👆 Toque para ingresar",
+            font=("DejaVu Sans", 16, "bold"), bg="black", fg="white")
+        self._lbl_toque.pack(side="bottom", fill="x", pady=10)
+        self._lbl_toque.bind("<Button-1>", self._salir)
+
         self._instance = None
         self._player = None
         self._activo = False
@@ -38,15 +44,17 @@ class ScreenSaver(BaseScreen):
 
         self._activo = True
         media = self._instance.media_new(VIDEO_PATH)
-        media.add_option("input-repeat=-1")  # loop infinito
         self._player.set_media(media)
         self._player.audio_set_mute(True)
 
         self.update_idletasks()
         self._player.set_xwindow(self._video_frame.winfo_id())
+
+        em = self._player.event_manager()
+        em.event_detach(vlc.EventType.MediaPlayerEndReached)
+        em.event_attach(vlc.EventType.MediaPlayerEndReached, self._on_fin_video)
+
         self._player.play()
-        self._player.event_manager().event_attach(
-            vlc.EventType.MediaPlayerEndReached, self._on_fin_video)
         log.info("Screensaver iniciado")
 
     def _salir(self, event=None):
@@ -54,6 +62,11 @@ class ScreenSaver(BaseScreen):
             return
         self._activo = False
         if self._player:
+            try:
+                self._player.event_manager().event_detach(
+                    vlc.EventType.MediaPlayerEndReached)
+            except Exception:
+                pass
             self._player.stop()
         log.info("Screensaver detenido por toque de pantalla")
         self.controller.show_frame("ScreenProducto")

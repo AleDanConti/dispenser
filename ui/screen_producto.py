@@ -241,11 +241,24 @@ class ScreenProducto(BaseScreen):
     def _tick_inactividad(self):
         if not self._vigilando:
             return
+        if not self._en_tty1():
+            # No estamos en la consola grafica (ej: alguien entro por
+            # Ctrl+Alt+F2) — no disparar el screensaver, solo esperar.
+            self._ultimo_toque = time.time()
+            self._inactividad_after_id = self.after(1000, self._tick_inactividad)
+            return
         if time.time() - self._ultimo_toque >= config.TIEMPO_INACTIVIDAD_SCREENSAVER:
             self._vigilando = False
             self.controller.show_frame("ScreenSaver")
             return
         self._inactividad_after_id = self.after(1000, self._tick_inactividad)
+
+    def _en_tty1(self):
+        try:
+            with open("/sys/class/tty/tty0/active") as f:
+                return f.read().strip() == "tty1"
+        except Exception:
+            return True  # si no se puede determinar, no bloquear el flujo normal
 
     def _detener_vigilancia_inactividad(self):
         self._vigilando = False
