@@ -88,3 +88,5 @@ ALERTAS_SMTP_PORT       = 465
 ALERTAS_SMTP_USER       = os.environ.get("ALERTAS_SMTP_USER", "")
 ALERTAS_SMTP_PASSWORD   = os.environ.get("ALERTAS_SMTP_PASSWORD", "")
 ALERTAS_COOLDOWN_SEG    = 3600
+
+TIEMPO_INACTIVIDAD_SCREENSAVER = 60   # segundos sin tocar la pantalla antes de activar el video

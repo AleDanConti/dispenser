@@ -42,9 +42,12 @@ class DispenserApp(tk.Tk):
         from ui.screen_estado   import ScreenEstado
         from ui.screen_pin      import ScreenPin
         from ui.screen_config   import ScreenConfig
+        from ui.screen_splash   import ScreenSplash
+        from ui.screen_saver    import ScreenSaver
+        from ui.screen_producto import ScreenProducto
 
         for PantallaCls in (
-            ScreenSplash, ScreenProducto, ScreenVolumen, ScreenQR,
+            ScreenSplash, ScreenSaver, ScreenProducto, ScreenVolumen, ScreenQR,
             ScreenEstado, ScreenPin, ScreenConfig,
         ):
             nombre = PantallaCls.__name__

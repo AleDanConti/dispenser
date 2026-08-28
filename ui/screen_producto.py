@@ -3,6 +3,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 import os
 import time
+import config
 from ui.base_screen import BaseScreen
 from core.settings import load_settings
 
@@ -67,6 +68,12 @@ class ScreenProducto(BaseScreen):
         self._toque_der = 0.0
         self._TIMEOUT   = 2.0
 
+
+        self._ultimo_toque = time.time()
+        self._inactividad_after_id = None
+        self._vigilando = False
+        self.bind_all("<Button-1>", self._registrar_toque, add="+")
+
         # ── Encabezado con círculos ──────────────────────
         header = tk.Frame(self, bg=BG)
         header.pack(pady=(16, 2))
@@ -117,6 +124,7 @@ class ScreenProducto(BaseScreen):
                 abs(self._toque_izq - self._toque_der) <= self._TIMEOUT):
             self._toque_izq = 0.0
             self._toque_der = 0.0
+            self._detener_vigilancia_inactividad()
             self.controller.show_frame("ScreenPin")
 
     def _make_card(self, parent, idx):
@@ -202,6 +210,7 @@ class ScreenProducto(BaseScreen):
         return wrapper
 
     def _on_card_click(self, idx):
+        self._detener_vigilancia_inactividad()
         self.seleccionar(get_productos()[idx])
 
     def on_show(self, **kwargs):
@@ -218,6 +227,34 @@ class ScreenProducto(BaseScreen):
             lbl = self._price_labels.get(prod["id"])
             if lbl:
                 lbl.config(text=texto)
+        self._iniciar_vigilancia_inactividad()
+
+    def _registrar_toque(self, event=None):
+        self._ultimo_toque = time.time()
+
+    def _iniciar_vigilancia_inactividad(self):
+        self._detener_vigilancia_inactividad()
+        self._ultimo_toque = time.time()
+        self._vigilando = True
+        self._tick_inactividad()
+
+    def _tick_inactividad(self):
+        if not self._vigilando:
+            return
+        if time.time() - self._ultimo_toque >= config.TIEMPO_INACTIVIDAD_SCREENSAVER:
+            self._vigilando = False
+            self.controller.show_frame("ScreenSaver")
+            return
+        self._inactividad_after_id = self.after(1000, self._tick_inactividad)
+
+    def _detener_vigilancia_inactividad(self):
+        self._vigilando = False
+        if self._inactividad_after_id is not None:
+            try:
+                self.after_cancel(self._inactividad_after_id)
+            except Exception:
+                pass
+            self._inactividad_after_id = None
 
     def seleccionar(self, producto):
         self.controller.state["producto"] = producto
