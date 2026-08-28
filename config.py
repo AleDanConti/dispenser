@@ -71,9 +71,9 @@ GPIO_SENSOR = {
 
 NIVEL_CALIBRACION = {
     "jabon_verde": {"vacio": 22.0, "lleno": 7.0},
-    "jabon_azul":  {"vacio": 38.5, "lleno": 5.0},
-    "suavizante":  {"vacio": 38.5, "lleno": 5.0},
-    "limpiador":   {"vacio": 42.0, "lleno": 6.0},
+    "jabon_azul":  {"vacio": 22.0, "lleno": 7.0},
+    "suavizante":  {"vacio": 22.0, "lleno": 7.0},
+    "limpiador":   {"vacio": 22.0, "lleno": 7.0},
 }
 
 MONITOREO_INTERVALO_SEG = 300
