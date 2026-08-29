@@ -9,7 +9,6 @@ APP_VERSION = "1.0.0"
 
 DEBUG           = False
 SIMULATION_MODE = True
-MOBBEX_SANDBOX  = True
 
 SCREEN_W = 1024
 SCREEN_H = 600

@@ -33,6 +33,8 @@ def buscar_sucursal():
         headers=HEADERS,
         params={"external_id": config.EQUIPO_ID},
     )
+    if resp.status_code == 404:
+        return None
     resp.raise_for_status()
     resultados = resp.json().get("results", [])
     return resultados[0] if resultados else None
@@ -66,6 +68,8 @@ def buscar_caja():
         headers=HEADERS,
         params={"external_id": POS_EXTERNAL_ID},
     )
+    if resp.status_code == 404:
+        return None
     resp.raise_for_status()
     resultados = resp.json().get("results", [])
     return resultados[0] if resultados else None
