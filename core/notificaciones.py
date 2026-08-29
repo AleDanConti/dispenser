@@ -56,5 +56,13 @@ def enviar_alertas(alertas, niveles_actuales=None):
     """Notificaciones de nivel bajo (Etapa 6) — pendiente de
     implementación completa de email, ya armado el canal WhatsApp."""
     for alerta in alertas:
-        log.warning(f"ALERTA: {alerta}")
-        enviar_whatsapp(f"⚠️ Alerta de nivel bajo: {alerta}")
+        nivel = ""
+        if niveles_actuales and alerta in niveles_actuales:
+            nivel = f" ({niveles_actuales[alerta]:.0f}%)"
+        log.warning(f"ALERTA: {alerta}{nivel}")
+        mensaje = (
+            f"⚠️ Alerta de nivel bajo\n"
+            f"Equipo: {config.EQUIPO_ID}\n"
+            f"Producto: {alerta}{nivel}"
+        )
+        enviar_whatsapp(mensaje)
