@@ -8,7 +8,7 @@ EQUIPO_ID   = "DISP-CENTRO-01"
 APP_VERSION = "1.0.0"
 
 DEBUG           = False
-SIMULATION_MODE = True
+SIMULATION_MODE = False
 
 SCREEN_W = 1024
 SCREEN_H = 600
@@ -25,7 +25,7 @@ PRECIOS = {
 
 TIEMPO_ESPERA_PAGO = 300
 
-MP_SANDBOX  = True   # False cuando pases a credenciales de produccion
+MP_SANDBOX  = False  # True = credenciales TEST, False = PROD (cuenta del dueño)
 
 MP_USER_ID = (
     os.environ.get("MP_USER_ID_TEST", "")
@@ -55,10 +55,10 @@ GPIO_LED_PAGO    = 25
 GPIO_BTN_REBOOT  = 4
 
 CAUDAL_CC_SEG = {
-    "jabon_verde": 6.67,
-    "jabon_azul":  6.67,
-    "suavizante":  6.67,
-    "limpiador":   58.33,
+    "jabon_verde": 29.07,
+    "jabon_azul":  29.07,
+    "suavizante":  29.07,
+    "limpiador":   29.07,
 }
 
 GPIO_SENSOR = {
