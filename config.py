@@ -69,7 +69,7 @@ GPIO_SENSOR = {
 }
 
 NIVEL_CALIBRACION = {
-    "jabon_verde": {"vacio": 22.0, "lleno": 7.0},
+    "jabon_verde": {"vacio": 40.3, "lleno": 7.6},
     "jabon_azul":  {"vacio": 22.0, "lleno": 7.0},
     "suavizante":  {"vacio": 22.0, "lleno": 7.0},
     "limpiador":   {"vacio": 22.0, "lleno": 7.0},
